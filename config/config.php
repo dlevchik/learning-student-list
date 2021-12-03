@@ -1,4 +1,8 @@
 <?php
+/**
+ * @File
+ * This file is used to define Script global variables & settings.
+ */
 
 if(getenv('DEV') === "1") {
     ini_set('display_errors', 1);

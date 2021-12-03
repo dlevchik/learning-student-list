@@ -2,7 +2,7 @@
 
 namespace dlevchik\Controller;
 
-class TestController {
+class TestController extends BaseController{
     public function render() {
         echo 'test';
     }
