@@ -18,16 +18,16 @@ class Routing
     /**
      * Construct new Script Route.
      * @param string $uri_pattern
-     * @param string $controller
+     * @param string|callable $controller
      * @param string|null $name
      *
      * @return Route
      */
-    public function register(string $uri_pattern, string $controller, string $name = null): Route
+    public function register(string $uri_pattern, $controller, string $name = null): Route
     {
         $new_route = new Route($uri_pattern, $controller, $name);
 
-        if ($new_route->getName() !== 'undefined') {
+        if (!$new_route->isAnonymous()) {
             $this->routes[$new_route->getName()] = $new_route;
         } else {
             $this->routes['_anonymous'][] = $new_route;
@@ -63,7 +63,7 @@ class Routing
         $requestUri = $_SERVER['REQUEST_URI'];
         $routes = array_reverse($this->getList());
 
-        $anonymousRoutes = $routes["_anonymous"];
+        $anonymousRoutes = $routes["_anonymous"] ?? [];
         unset($routes["_anonymous"]);
 
         $arguments = [];
