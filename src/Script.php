@@ -10,7 +10,8 @@ class Script
      *
      * @return \dlevchik\Service\Container
      */
-    public static function container(): Container {
+    public static function container(): Container
+    {
         return Container::getInstance();
     }
 
@@ -19,7 +20,8 @@ class Script
      *
      * @return \dlevchik\Service\Routing
      */
-    public static function routing(): Routing {
+    public static function routing(): Routing
+    {
         return self::container()->get('routing');
     }
 }

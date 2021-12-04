@@ -9,12 +9,14 @@ trait SingletonTrait
      *
      * @var array
      */
-    private static $instances = [];
+    private static array $instances = [];
 
     /**
      * Disable "new".
      */
-    protected function __construct() { }
+    protected function __construct()
+    {
+    }
 
     /**
      * @return self

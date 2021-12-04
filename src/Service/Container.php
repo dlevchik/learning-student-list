@@ -1,6 +1,5 @@
 <?php
 
-
 namespace dlevchik\Service;
 
 use dlevchik\Traits\SingletonTrait;
@@ -17,7 +16,7 @@ class Container
      *
      * @var array[]
      */
-    private $services = [];
+    private array $services = [];
 
     /**
      * Adds service to container.
@@ -29,7 +28,8 @@ class Container
      *
      * @throws \InvalidArgumentException
      */
-    public function set(string $service_key, $construct_callback): self {
+    public function set(string $service_key, $construct_callback): self
+    {
         if (is_callable($construct_callback) || is_string($construct_callback)) {
             $this->services[$service_key]['instance'] = false;
             $this->services[$service_key]['callable'] = $construct_callback;
@@ -47,15 +47,16 @@ class Container
      *
      * @return mixed
      */
-    public function get(string $service_key) {
+    public function get(string $service_key)
+    {
         if (false !== $this->services[$service_key]['instance']) {
             return $this->services[$service_key]['instance'];
         }
 
         if (is_callable($this->services[$service_key]['callable'])) {
             $this->services[$service_key]['instance'] = call_user_func($this->services[$service_key]['callable'], $this);
-        } else if (is_string($this->services[$service_key]['callable'])) {
-            $this->services[$service_key]['instance'] = new $this->services[$service_key]['callable'];
+        } elseif (is_string($this->services[$service_key]['callable'])) {
+            $this->services[$service_key]['instance'] = new $this->services[$service_key]['callable']();
         }
 
         if (false === $this->services[$service_key]['instance']) {
@@ -64,5 +65,4 @@ class Container
 
         return $this->services[$service_key]['instance'];
     }
-
 }
