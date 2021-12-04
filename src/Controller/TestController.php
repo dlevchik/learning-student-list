@@ -15,4 +15,9 @@ class TestController extends BaseController
     {
         echo "test $test";
     }
+
+    public function handle($test)
+    {
+        echo "handle $test";
+    }
 }

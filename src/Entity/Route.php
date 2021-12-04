@@ -55,7 +55,7 @@ class Route
      */
     private $injection_callback;
 
-    public function __construct(string $uri_pattern, string $controller, string $name = 'anonymous')
+    public function __construct(string $uri_pattern, string $controller, ?string $name)
     {
         $controller_parts = explode("::", $controller);
         $controller_class = $controller_parts[0];
@@ -72,7 +72,7 @@ class Route
         $this->uri_pattern = $uri_pattern;
         $this->controller_class = $controller_class;
         $this->controller_method = $controller_method;
-        $this->name = $name;
+        $this->name = $name ?? 'undefined';
     }
 
     /**

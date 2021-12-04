@@ -21,13 +21,13 @@ class Routing
      * @param string $controller
      * @param string|null $name
      *
-     * @return $this
+     * @return Route
      */
-    public function register(string $uri_pattern, string $controller, ?string $name): Route
+    public function register(string $uri_pattern, string $controller, string $name = null): Route
     {
         $new_route = new Route($uri_pattern, $controller, $name);
 
-        if (!is_null($new_route->getName())) {
+        if ($new_route->getName() !== 'undefined') {
             $this->routes[$new_route->getName()] = $new_route;
         } else {
             $this->routes['_anonymous'][] = $new_route;
@@ -63,15 +63,27 @@ class Routing
         $requestUri = $_SERVER['REQUEST_URI'];
         $routes = array_reverse($this->getList());
 
+        $anonymousRoutes = $routes["_anonymous"];
+        unset($routes["_anonymous"]);
+
         $arguments = [];
-        foreach ($routes as $route) {
-            if (1 === preg_match($route->get_uri_pattern(), $requestUri, $arguments)) {
-                array_shift($arguments);
-                $route->set_arguments($arguments);
-                return $route;
+        foreach (array_merge($anonymousRoutes, $routes) as $route) {
+            $container = $this->isRouteMatchUri($route, $requestUri, $arguments);
+            if (!is_null($container)) {
+                return $container;
             }
         }
 
+        return null;
+    }
+
+    public function isRouteMatchUri($route, $requestUri, &$arguments): ?Route
+    {
+        if (1 === preg_match($route->get_uri_pattern(), $requestUri, $arguments)) {
+            array_shift($arguments);
+            $route->set_arguments($arguments);
+            return $route;
+        }
         return null;
     }
 

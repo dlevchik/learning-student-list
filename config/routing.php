@@ -7,7 +7,7 @@
 
 namespace dlevchik\Controller;
 
-\Script::routing()->register('/\/test\/(\d+)/', "dlevchik\Controller\TestController::render", "test")
+\Script::routing()->register('/\/test\/(\d+)/', "dlevchik\Controller\TestController")
     ->inject(function ($container) {
         return new TestController($container->get('routing'));
     });
