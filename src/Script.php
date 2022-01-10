@@ -1,14 +1,14 @@
 <?php
 
-use dlevchik\Service\Container;
-use dlevchik\Service\Routing;
+use dlevchik\Framework\Service\Container;
+use dlevchik\Framework\Service\Routing;
 
 class Script
 {
     /**
      * Get script DI container.
      *
-     * @return \dlevchik\Service\Container
+     * @return \dlevchik\Framework\Service\Container
      */
     public static function container(): Container
     {
@@ -18,7 +18,7 @@ class Script
     /**
      * Get script routing service.
      *
-     * @return \dlevchik\Service\Routing
+     * @return \dlevchik\Framework\Service\Routing
      */
     public static function routing(): Routing
     {

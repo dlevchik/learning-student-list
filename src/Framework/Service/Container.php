@@ -1,8 +1,8 @@
 <?php
 
-namespace dlevchik\Service;
+namespace dlevchik\Framework\Service;
 
-use dlevchik\Traits\SingletonTrait;
+use dlevchik\Framework\Traits\SingletonTrait;
 
 /**
  *  Global DI container.

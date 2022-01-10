@@ -1,6 +1,6 @@
 <?php
 
-namespace dlevchik\Traits;
+namespace dlevchik\Framework\Traits;
 
 trait SingletonTrait
 {

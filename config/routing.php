@@ -5,7 +5,7 @@
  * This file is used for Routing System registrations.
  */
 
-namespace dlevchik\Controller;
+namespace dlevchik\App\Controller;
 
 \Script::routing()->register('/\/test\/(\d+)/', TestController::class)
     ->inject(function ($container) {

@@ -13,6 +13,15 @@
  * @endcode
  */
 
-namespace dlevchik\Service;
+namespace dlevchik\App\Service;
 
-\Script::container()->set('routing', Routing::class);
+/**
+ * Framework defined services.
+ */
+\Script::container()->set('routing', 'dlevchik\Framework\Service\Routing');
+
+/**
+ * =============================================================================
+ *                You can define your own services below.
+ * =============================================================================
+ */

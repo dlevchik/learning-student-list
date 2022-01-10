@@ -1,8 +1,8 @@
 <?php
 
-namespace dlevchik\Service;
+namespace dlevchik\Framework\Service;
 
-use dlevchik\Entity\Route;
+use dlevchik\Framework\Entity\Route;
 
 /**
  * Script Routing class responsible for matching URIs to Controllers.
@@ -37,7 +37,7 @@ class Routing
     }
 
     /**
-     * @return \dlevchik\Entity\Route[]
+     * @return \dlevchik\Framework\Entity\Route[]
      */
     public function getList(): array
     {
@@ -47,7 +47,7 @@ class Routing
     /**
      * @param $name
      *
-     * @return \dlevchik\Entity\Route|null
+     * @return \dlevchik\Framework\Entity\Route|null
      */
     public function getByName($name): ?Route
     {
@@ -56,7 +56,7 @@ class Routing
 
     /**
      * Match current requested uri to script controller.
-     * @return \dlevchik\Entity\Route|null
+     * @return \dlevchik\Framework\Entity\Route|null
      */
     public function findController(): ?Route
     {
@@ -77,6 +77,14 @@ class Routing
         return null;
     }
 
+    /**
+     * Check given uri to controller and find it's arguments if any.
+     * @param $route
+     * @param $requestUri
+     * @param $arguments
+     *
+     * @return \dlevchik\Framework\Entity\Route|null
+     */
     public function isRouteMatchUri($route, $requestUri, &$arguments): ?Route
     {
         if (1 === preg_match($route->get_uri_pattern(), $requestUri, $arguments)) {

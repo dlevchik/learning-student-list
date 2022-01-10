@@ -1,6 +1,6 @@
 <?php
 
-namespace dlevchik\Controller;
+namespace dlevchik\App\Controller;
 
 abstract class BaseController
 {

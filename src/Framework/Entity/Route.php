@@ -1,14 +1,12 @@
 <?php
 
-namespace dlevchik\Entity;
-
-use http\Exception\BadMethodCallException;
+namespace dlevchik\Framework\Entity;
 
 /**
  * Class Route
  * Used to store and manipulate with controller instance.
  *
- * @see dlevchik\Service\Routing.php
+ * @see dlevchik\Framework\Service\Routing.php
  *
  * @package dlevchik\Entity
  */
