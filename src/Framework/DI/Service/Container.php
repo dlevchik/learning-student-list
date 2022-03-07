@@ -34,7 +34,7 @@ class Container
             $this->services[$service_key]['instance'] = false;
             $this->services[$service_key]['callable'] = $construct_callback;
         } else {
-            throw new \InvalidArgumentException('Container set extends $construct_callback to be callable|object|string with service name');
+            throw new \InvalidArgumentException('Container set extends $construct_callback to be callable|string with service name');
         }
 
         return $this;
@@ -56,7 +56,7 @@ class Container
         if (is_callable($this->services[$service_key]['callable'])) {
             $this->services[$service_key]['instance'] = call_user_func($this->services[$service_key]['callable'], $this);
         } elseif (is_string($this->services[$service_key]['callable'])) {
-            $this->services[$service_key]['instance'] = new $this->services[$service_key]['callable']();
+            $this->services[$service_key]['instance'] = new $this->services[$service_key]['callable']($this);
         }
 
         if (false === $this->services[$service_key]['instance']) {
